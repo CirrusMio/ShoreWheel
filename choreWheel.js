@@ -1,6 +1,6 @@
 function ChoreWheel(){
   this.chores = ['Dishes','Garbage','Recycling','Stuff'];
-  this.people = ['Mike', 'Will', 'Tanzi', 'Sarah', 'Nick', 
+  this.people = ['Mike', 'Will', 'Tanzi', 'Sarah', 'Nick',
                  'Steev', 'Chase Original', 'Nu-Chase', 'Todd'];
   this.pairs = [];
 };
@@ -8,7 +8,12 @@ function ChoreWheel(){
 ChoreWheel.prototype.setPairs = function(){
   this.pairs = [];
   for(var i = 0;i < this.people.length;i++){
-    this.pairs.push([this.chores[i],this.people[i]]);
+    if(i >= this.chores.length){
+     this.pairs.push(['Free',this.people[i]]);
+    }
+    else{
+      this.pairs.push([this.chores[i],this.people[i]]);
+    }
   }
 };
 

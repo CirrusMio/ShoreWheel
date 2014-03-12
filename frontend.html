@@ -3,12 +3,16 @@
   <script src="angular.min.js"></script>
   <script src="choreWheel.js"></script>
   <body ng-controller="choreWheelCtrl">
-    <ul>
-      <li ng-repeat="pair in wheel.pairs">
-        {{pair[0]}}
-        <p>{{pair[1]}}</p>
-      </li>
-    </ul>
+    <table border="1">
+      <tr>
+        <th>Person</th>
+        <th>Chore</th>
+      </tr>
+      <tr ng-repeat="pair in wheel.pairs">
+        <td>{{pair[1]}}</td>
+        <td>{{pair[0]}}</td>
+      <tr>
+    </table>
   </body>
   <button ng-click="wheel.rotateWheel()">rotate</button>
 </html>
