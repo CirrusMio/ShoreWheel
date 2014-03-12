@@ -1,6 +1,15 @@
-<html>
-<title> Shore Wheel </title>
-<div1 id="WHEEL"></div1>
-<script src="choreWheel.js"></script>
-<button onclick="wheel.rotateWheel()">rotate</button>
+<html ng-app="choreWheelApp">
+  <title> Shore Wheel </title>
+  <div1 id="WHEEL"></div1>
+  <script src="angular.min.js"></script>
+  <script src="choreWheel.js"></script>
+  <body ng-controller="choreWheelCtrl">
+    <ul>
+      <li ng-repeat="pair in wheel.pairs">
+        {{pair[0]}}
+        <p>{{pair[1]}}</p>
+      </li>
+    </ul>
+  </body>
+  <button ng-click="wheel.rotateWheel()">rotate</button>
 </html>

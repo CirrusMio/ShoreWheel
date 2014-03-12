@@ -26,19 +26,12 @@ ChoreWheel.prototype.addChore = function(name){
 ChoreWheel.prototype.rotateWheel = function(){
   this.people.push(this.people.shift());
   this.setPairs();
-  var str = '';
-  var start = document.getElementById("WHEEL");
-  while(start.firstChild){
-    start.removeChild(start.firstChild);
-  }
-  for(var i = 0;i < this.pairs.length;i++){
-    str = this.pairs[i][0] + " " + this.pairs[i][1];
-    var pair = document.createTextNode(str);
-    var para = document.createElement("p");
-    para.appendChild(pair);
-    start.appendChild(para);
-  }
 };
 
 var wheel =new ChoreWheel();
 wheel.setPairs();
+
+var choreWheelApp = angular.module('choreWheelApp',[]);
+
+choreWheelApp.controller('choreWheelCtrl',function($scope){$scope.wheel = wheel});
+
