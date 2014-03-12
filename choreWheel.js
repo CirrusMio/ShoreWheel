@@ -1,5 +1,5 @@
 function ChoreWheel(){
-  this.chores = ['Dishes','Garbage','Recycling','Stuff'];
+  this.chores = ['Dishes', 'Garbage', 'Recycling', 'Stuff'];
   this.people = ['Mike', 'Will', 'Tanzi', 'Sarah', 'Nick',
                  'Steev', 'Chase Original', 'Nu-Chase', 'Todd'];
   this.pairs = [];
@@ -9,10 +9,10 @@ ChoreWheel.prototype.setPairs = function(){
   this.pairs = [];
   for(var i = 0;i < this.people.length;i++){
     if(i >= this.chores.length){
-     this.pairs.push(['Free',this.people[i]]);
+     this.pairs.push(['Free', this.people[i]]);
     }
     else{
-      this.pairs.push([this.chores[i],this.people[i]]);
+      this.pairs.push([this.chores[i], this.people[i]]);
     }
   }
 };
@@ -37,7 +37,8 @@ ChoreWheel.prototype.rotateWheel = function(){
 var wheel =new ChoreWheel();
 wheel.setPairs();
 
-var choreWheelApp = angular.module('choreWheelApp',[]);
+var choreWheelApp = angular.module('choreWheelApp', []);
 
-choreWheelApp.controller('choreWheelCtrl',function($scope){$scope.wheel = wheel});
+choreWheelApp.controller('choreWheelCtrl', function($scope)
+                                           {$scope.wheel = wheel});
 
