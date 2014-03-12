@@ -2,8 +2,6 @@ function ChoreWheel(){
   this.chores = ['Dishes','Garbage','Recycling','Stuff'];
   this.people = ['Mike','Will','Tanzi','Sarah'];
   this.pairs = [];
-  // This variable remembers the children that need to be removed
-  this.children = [];
 };
 
 ChoreWheel.prototype.setPairs = function(){
@@ -29,16 +27,16 @@ ChoreWheel.prototype.rotateWheel = function(){
   this.people.push(this.people.shift());
   this.setPairs();
   var str = '';
-  for(var i = 0;i < this.children.length;i++){
-    document.getElementById("WHEEL").removeChild(this.children[i]);
+  var start = document.getElementById("WHEEL");
+  while(start.firstChild){
+    start.removeChild(start.firstChild);
   }
   for(var i = 0;i < this.pairs.length;i++){
     str = this.pairs[i][0] + " " + this.pairs[i][1];
     var pair = document.createTextNode(str);
     var para = document.createElement("p");
     para.appendChild(pair);
-    this.children.push(para);
-    document.getElementById("WHEEL").appendChild(para);
+    start.appendChild(para);
   }
 };
 
