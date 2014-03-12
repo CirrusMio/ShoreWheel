@@ -1,6 +1,7 @@
 function ChoreWheel(){
   this.chores = ['Dishes','Garbage','Recycling','Stuff'];
-  this.people = ['Mike','Will','Tanzi','Sarah'];
+  this.people = ['Mike', 'Will', 'Tanzi', 'Sarah', 'Nick', 
+                 'Steev', 'Chase Original', 'Nu-Chase', 'Todd'];
   this.pairs = [];
 };
 
