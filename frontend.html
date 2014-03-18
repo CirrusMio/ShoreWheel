@@ -1,20 +1,27 @@
 <html ng-app="choreWheelApp">
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"></link>
   <head>
-    <title> Shore Wheel </title>
-    <body ng-controller="choreWheelCtrl">
-      <script src="angular.min.js"></script>
-      <script src="choreWheel.js"></script>
-      <table border="1">
-        <tr>
-          <th>Person</th>
-          <th>Chore</th>
-        </tr>
-        <tr ng-repeat="pair in wheel.pairs">
-          <td>{{pair[1]}}</td>
-          <td>{{pair[0]}}</td>
-        <tr>
-      </table>
-    </body>
-    <button ng-click="wheel.rotateWheel()">rotate</button>
+    <p></p>
+    <div class="panel panel-default col-md-8 col-md-offset-2">
+      <div class="panel-heading"><h1>Shore Wheel</h1></div>
+      <div class="panel-body">
+        <title> Shore Wheel </title>
+        <body ng-controller="choreWheelCtrl">
+          <script src="angular.min.js"></script>
+          <script src="choreWheel.js"></script>
+          <table class="table table-bordered table-striped">
+            <tr>
+              <th>Person</th>
+              <th>Chore</th>
+            </tr>
+            <tr ng-repeat="pair in wheel.pairs">
+              <td>{{pair[1]}}</td>
+              <td>{{pair[0]}}</td>
+            <tr>
+          </table>
+        </body>
+        <button class="btn-primary btn-lg" ng-click="wheel.rotateWheel()">rotate</button>
+      </div>
+    </div>
   </head>
 </html>
