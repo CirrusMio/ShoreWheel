@@ -1,1 +1,1 @@
-web: frontend.html
+web: gunicorn shorewheel:app
