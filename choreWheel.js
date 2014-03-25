@@ -3,6 +3,9 @@ function ChoreWheel(){
   this.people = ['Mike', 'Will', 'Tanzi', 'Sarah', 'Nick',
                  'Steev', 'Chase Original', 'Nu-Chase', 'Todd'];
   this.pairs = [];
+  this.begin = new Date(2014,3,25,13,15,00);
+  this.setPairs();
+  this.setup();
 };
 
 ChoreWheel.prototype.setPairs = function(){
@@ -19,7 +22,7 @@ ChoreWheel.prototype.setPairs = function(){
 
 ChoreWheel.prototype.getPairs = function(){
   return this.pairs;
-}
+};
 
 ChoreWheel.prototype.addPerson = function(name){
   this.people.push(name);
@@ -34,8 +37,18 @@ ChoreWheel.prototype.rotateWheel = function(){
   this.setPairs();
 };
 
-var wheel =new ChoreWheel();
-wheel.setPairs();
+ChoreWheel.prototype.setup = function(){
+  var today = new Date();
+  var spins = new Date(today-this.begin);
+  spins = spins%(this.people.length);
+
+  for(var i = 0;i < spins;i++){
+    this.rotateWheel();
+  }
+};
+
+
+var wheel = new ChoreWheel();
 
 var choreWheelApp = angular.module('choreWheelApp', []);
 
