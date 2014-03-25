@@ -41,7 +41,7 @@ ChoreWheel.prototype.rotateWheel = function(){
 ChoreWheel.prototype.setup = function(){
   var today = new Date();
   var spins = new Date(today-this.begin);
-  spins = spins%(this.people.length);
+  spins = spins.getMinutes()%(this.people.length);
 
   for(var i = 0;i < spins;i++){
     this.rotateWheel();
