@@ -3,7 +3,7 @@ function ChoreWheel(){
   this.people = ['Mike', 'Will', 'Tanzi', 'Sarah', 'Nick',
                  'Steev', 'Chase Original', 'Nu-Chase', 'Todd'];
   this.pairs = [];
-  this.begin = new Date(2014,3,25,13,15,00);
+  this.begin = new Date(2014,2,25,13,15,00);
   this.setPairs();
   this.setup();
 };
@@ -35,6 +35,7 @@ ChoreWheel.prototype.addChore = function(name){
 ChoreWheel.prototype.rotateWheel = function(){
   this.people.push(this.people.shift());
   this.setPairs();
+  console.log(this.begin);
 };
 
 ChoreWheel.prototype.setup = function(){
@@ -49,6 +50,7 @@ ChoreWheel.prototype.setup = function(){
 
 
 var wheel = new ChoreWheel();
+
 
 var choreWheelApp = angular.module('choreWheelApp', []);
 
