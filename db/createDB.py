@@ -6,7 +6,7 @@ engine = create_engine('sqlite:///:memory:',echo=True)
 #create a base for the tables
 Base = declarative_base()
 
-class People(Base):
+class Person(Base):
   __tablename__ = 'People'
 
   displayName = Column(String)
