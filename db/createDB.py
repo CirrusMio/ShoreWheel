@@ -11,6 +11,7 @@ class Person(Base):
 
   displayName = Column(String)
   fullName = Column(String)
+  tickets = Column(Integer)
   id = Column(Integer, primary_key=True)
 
   def __repr__(self):

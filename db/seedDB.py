@@ -1,6 +1,27 @@
 from sqlalchemy import sessionmaker
-import createDB
+from createDB import Person, Chore, Pair, engine
 
+
+def createPairs():
+  Session = sessionmaker(bind = engine)
+  session = Session()
+  #person ids array
+  pid = []
+  #chore ids array
+  cid = []
+  pairs = []
+  for person in session.query(Person).order_by(User.id):
+    pid.append(person.id)
+  for chore in session.query(Chore).order_by(Chore.id):
+    cid.append(chore.id)
+  for p in pid:
+    if(len(cid) != 0):
+      pairs.append(Pair(person = p, chore = cid.pop()))
+    else:
+      pairs.append(Pair(person = p, chore = -1))
+
+  session.add_all(pairs)
+  session.commit()
 
 def seed():
   Session = sessionmaker(bind = engine)
@@ -8,14 +29,14 @@ def seed():
   #start the seeding
 
   people = [
-    Person(displayName = 'Mike', fullName = 'Mike Dillon'),
-    Person(displayName = 'Mike', fullName = 'Mike Dillon'),
-    Person(displayName = 'Mike', fullName = 'Mike Dillon'),
-    Person(displayName = 'Mike', fullName = 'Mike Dillon'),
-    Person(displayName = 'Mike', fullName = 'Mike Dillon'),
-    Person(displayName = 'Mike', fullName = 'Mike Dillon'),
-    Person(displayName = 'Mike', fullName = 'Mike Dillon'),
-    Person(displayName = 'Mike', fullName = 'Mike Dillon'),
+    Person(displayName = 'Mike', fullName = 'Mike Dillon',tickets = 1),
+    Person(displayName = 'Mike', fullName = 'Mike Dillon',tickets = 1),
+    Person(displayName = 'Mike', fullName = 'Mike Dillon',tickets = 1),
+    Person(displayName = 'Mike', fullName = 'Mike Dillon',tickets = 1),
+    Person(displayName = 'Mike', fullName = 'Mike Dillon',tickets = 1),
+    Person(displayName = 'Mike', fullName = 'Mike Dillon',tickets = 1),
+    Person(displayName = 'Mike', fullName = 'Mike Dillon',tickets = 1),
+    Person(displayName = 'Mike', fullName = 'Mike Dillon',tickets = 1),
   ]
 
   chores = [
@@ -29,3 +50,4 @@ def seed():
   session.add_all(people)
   session.add_all(chores)
   session.commit()
+  createPairs()
