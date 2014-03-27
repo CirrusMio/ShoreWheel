@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.delcarative import declarative_base
+from sqlalchemy.ext.declarative import declarative_base
 
 engine = create_engine('sqlite:///:memory:',echo=True)
 
@@ -33,7 +33,7 @@ class Pair(Base):
   __tablename__ = 'Pairs'
 
   person = Column(Integer)
-  chore = Column(Integer)
+  chore = Column(Integer, primary_key=True)
 
   def __repr__(self):
     return "<Pair(%i,%i)>" % (self.person, self.chore)

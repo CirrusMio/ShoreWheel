@@ -1,4 +1,4 @@
-from sqlalchemy import sessionmaker
+from sqlalchemy.orm import sessionmaker
 from createDB import Person, Chore, Pair, engine
 from random import randint
 
@@ -31,7 +31,8 @@ def createPairs(session):
         total += p.tickets
       choice = randint(1,total)
       for p in people:
-        if((total -= p.tickets) <= 0):
+        total -= p.tickets
+        if(total <= 0):
           pairs.append(Pair(person = p.id,chore = c.id))
           p.tickets -= c.freq
 

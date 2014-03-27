@@ -1,4 +1,5 @@
 from createDB import Person, Chore, Pair, engine
+from sqlalchemy.orm import sessionmaker
 
 #adds the chore specified by the name, n, and the frequency, f.
 def createChore(n, f):
@@ -13,9 +14,11 @@ def createPerson(name, fullname):
 
 def rotate():
   #TODO func rotates the weekly chores
+  return
 
 def multiSelect():
   #TODO func selects people for the multi-week chores
+  return
 
 
 def getPeople():
