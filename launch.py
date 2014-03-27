@@ -1,13 +1,12 @@
-import os
-import sys
-sys.path.append(os.pathsep + './db/')
 from flask import Flask
 from interactDB import getPeople
+from seedDB import seed
 app = Flask('ShoreWheel')
 
 @app.route('/')
 def index():
-  return getPeople()
+  seed()
+  return "Hello World"
 
-
+app.debug = True
 app.run()
