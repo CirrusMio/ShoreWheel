@@ -8,7 +8,7 @@ all: launch
 
 launch: $(DBDIRFILES) $(SHAREDFILES)
 	cp $(DBDIRFILES) ./
-	cp $(SHAREDDIR) ./
+	cp $(SHAREDFILES) ./
 	python launch.py
 
 $(DBDIRFILES): $(SHAREDFILES)
