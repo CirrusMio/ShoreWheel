@@ -2,7 +2,7 @@ from sqlalchemy.orm import sessionmaker
 from createDB import Person, Chore, Pair, engine
 from random import randint
 
-Session = sessionmaker(bind = engine)
+Session = sessionmaker(bind=engine)
 session = Session()
 
 def createPairs(session):
@@ -45,26 +45,26 @@ def seed():
   #start the seeding
 
   people = [
-    Person(displayName='Mike', fullName='Mike Dillon', tickets=1),
-    Person(displayName='Mike', fullName='Mike Dillon', tickets=1),
-    Person(displayName='Mike', fullName='Mike Dillon', tickets=1),
-    Person(displayName='Mike', fullName='Mike Dillon', tickets=1),
-    Person(displayName='Mike', fullName='Mike Dillon', tickets=1),
-    Person(displayName='Mike', fullName='Mike Dillon', tickets=1),
-    Person(displayName='Mike', fullName='Mike Dillon', tickets=1),
-    Person(displayName='Mike', fullName='Mike Dillon', tickets=1)
+    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
+    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
+    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
+    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
+    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
+    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
+    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
+    Person(displayName="Mike", fullName="Mike Dillon", tickets=1)
   ]
 
   chores = [
-    Chore(name='Dishes', freq=1),
-    Chore(name='Trash', freq=1),
-    Chore(name='Bathroom', freq=4),
-    Chore(name='Recycling', freq=1),
-    Chore(name='Stuffffff', freq=1)
+    Chore(name="Dishes", freq=1),
+    Chore(name="Trash", freq=1),
+    Chore(name="Bathroom", freq=4),
+    Chore(name="Recycling", freq=1),
+    Chore(name="Stuffffff", freq=1)
   ]
 
   session.add(people[0])
-  session.add(chores[0])
+  #session.add(chores[0])
   session.commit()
   #createPairs(session)
   session.flush()

@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
+import flask from Flask
+from flask.ext.sqlalchemy import SQLAlchemy
 
 engine = create_engine('sqlite:///:memory:',echo=True)
 
@@ -7,35 +7,38 @@ engine = create_engine('sqlite:///:memory:',echo=True)
 Base = declarative_base()
 
 class Person(Base):
-  __tablename__ = "Person"
+  __tablename__ = "people"
 
-  id = Column(Integer, primary_key=True)
   displayName = Column(String)
   fullName = Column(String)
   tickets = Column(Integer)
+  id = Column(Integer, primary_key=True)
+
 
   def __repr__(self):
-    return "<Person(%s,%s)>" % (self.displayName, self.fullName)
+    return "<Person(displayName='%s', fullName='%s', tickets='%i')>" % (self.displayName, self.fullName)
 
 class Chore(Base):
-  __tablename__ = "Chores"
+  __tablename__ = "chores"
 
-  id = Column(Integer, primary_key=True)
   name = Column(String)
   #frequency expressed in weeks
   freq = Column(Integer)
+  id = Column(Integer, primary_key=True)
 
   def __repr__(self):
-    return "<Chore(%s,%i)>" % (self.name, self.freq)
+    return "<Chore(name='%s', freq='%i')>" % (self.name, self.freq)
 
 #represents a person Chore pair
 class Pair(Base):
-  __tablename__ = "Pairs"
+  __tablename__ = "pairs"
 
-  chore = Column(Integer, primary_key=True)
   person = Column(Integer)
+  chore = Column(Integer, primary_key=True)
+
 
   def __repr__(self):
-    return "<Pair(%i,%i)>" % (self.person, self.chore)
+    return "<Pair(chore='%i', person='%i')>" % (self.person, self.chore)
 
 print Person.__table__
+print Chore.__table__
