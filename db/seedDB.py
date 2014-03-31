@@ -2,9 +2,6 @@ from app import db
 from createDB import Person, Chore, Pair
 from random import randint
 
-Session = sessionmaker(bind=engine)
-session = Session()
-
 def createPairs(session):
   #person ids array
   pid = []
@@ -63,8 +60,6 @@ def seed():
     Chore("Stuffffff", 1)
   ]
 
-  db.session.add(people[0])
-  #session.add(chores[0])
+  db.session.add_all(people)
+  db.session.add_all(chores)
   db.session.commit()
-  #createPairs(session)
-  db.session.flush()

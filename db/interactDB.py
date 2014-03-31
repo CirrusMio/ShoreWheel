@@ -1,17 +1,16 @@
-from createDB import Person, Chore, Pair, engine
-from sqlalchemy.orm import sessionmaker
-from seedDB import session
+from createDB import Person, Chore, Pair
+from app import db
 
 
 
 #adds the chore specified by the name, n, and the frequency, f.
 def createChore(n, f):
-  session.add(Chore(name = n, freq = f))
-  session.commit()
+  db.session.add(Chore(n, f))
+  dbsession.commit()
 
 def createPerson(name, fullname):
-  session.add(Person(displayName = name, fullName = fullname, tickets = 1))
-  session.commit()
+  db.session.add(Person(name, fullname))
+  db.session.commit()
 
 def rotate():
   #TODO func rotates the weekly chores
@@ -23,7 +22,7 @@ def multiSelect():
 
 
 def getPeople():
-  return session.query(Person).order_by(Person.id)
+  return Person.session.query.order_by(Person.id)
 
 def getChores():
-  return session.query(Chore).order_by(Chore.id)
+  return Chore.session.query.order_by(Chore.id)
