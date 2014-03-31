@@ -1,5 +1,4 @@
 from app import db
-from flask.ext.sqlalchemy import SQLAlchemy
 
 class Person(db.Model):
   displayName = db.Column(db.String)
@@ -40,4 +39,4 @@ class Pair(db.Model):
   def __repr__(self):
     return "<Pair(chore='%i', person='%i')>" % (self.person, self.chore)
 
-SQLAlchemy.create_all()
+db.create_all()
