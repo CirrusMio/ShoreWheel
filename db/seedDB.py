@@ -42,14 +42,14 @@ def seed():
   #start the seeding
 
   people = [
-    Person("Mike", "Mike Dillon", 1),
-    Person("Mike", "Mike Dillon", 1),
-    Person("Mike", "Mike Dillon", 1),
-    Person("Mike", "Mike Dillon", 1),
-    Person("Mike", "Mike Dillon", 1),
-    Person("Mike", "Mike Dillon", 1),
-    Person("Mike", "Mike Dillon", 1),
-    Person("Mike", "Mike Dillon", 1)
+    Person("Mike", "Mike Dillon"),
+    Person("Mike", "Mike Dillon"),
+    Person("Mike", "Mike Dillon"),
+    Person("Mike", "Mike Dillon"),
+    Person("Mike", "Mike Dillon"),
+    Person("Mike", "Mike Dillon"),
+    Person("Mike", "Mike Dillon"),
+    Person("Mike", "Mike Dillon")
   ]
 
   chores = [
@@ -60,6 +60,6 @@ def seed():
     Chore("Stuffffff", 1)
   ]
 
-  db.session.add_all(people)
-  db.session.add_all(chores)
+  db.session.add(people[0])
+  db.session.add(chores[1])
   db.session.commit()
