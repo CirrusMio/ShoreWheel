@@ -1,5 +1,5 @@
-from sqlalchemy.orm import sessionmaker
-from createDB import Person, Chore, Pair, engine
+from app import db
+from createDB import Person, Chore, Pair
 from random import randint
 
 Session = sessionmaker(bind=engine)
@@ -11,9 +11,9 @@ def createPairs(session):
   #chore ids array
   cid = []
   pairs = []
-  for person in session.query(Person).order_by(User.id):
+  for person in Person.query.order_by(User.id):
     pid.append(person.id)
-  for chore in session.query(Chore).order_by(Chore.id):
+  for chore in Chore.query.order_by(Chore.id):
     cid.append(chore.id)
   for p in pid:
     if(len(cid) != 0 and cid[-1].freq == 1):
@@ -21,12 +21,12 @@ def createPairs(session):
     else:
       pairs.append(Pair(person = p, chore = -1))
 
-  session.add_all(pairs)
+  db.session.add_all(pairs)
   pairs = []
-  people = session.query(Person).order_by(User.tickets)
+  people = Person.query.order_by(User.tickets)
 
   #randomly assign multi-week chores to people
-  for c in session.query(Chore).order_by(Chore.freq):
+  for c in Chore.session.query.order_by(Chore.freq):
     if(c.freq > 1):
       total = 0
       for p in people:
@@ -38,33 +38,33 @@ def createPairs(session):
           pairs.append(Pair(person = p.id,chore = c.id))
           p.tickets -= c.freq
 
-  session.add_all(pairs)
-  session.commit()
+  db.session.add_all(pairs)
+  db.session.commit()
 
 def seed():
   #start the seeding
 
   people = [
-    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
-    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
-    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
-    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
-    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
-    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
-    Person(displayName="Mike", fullName="Mike Dillon", tickets=1),
-    Person(displayName="Mike", fullName="Mike Dillon", tickets=1)
+    Person("Mike", "Mike Dillon", 1),
+    Person("Mike", "Mike Dillon", 1),
+    Person("Mike", "Mike Dillon", 1),
+    Person("Mike", "Mike Dillon", 1),
+    Person("Mike", "Mike Dillon", 1),
+    Person("Mike", "Mike Dillon", 1),
+    Person("Mike", "Mike Dillon", 1),
+    Person("Mike", "Mike Dillon", 1)
   ]
 
   chores = [
-    Chore(name="Dishes", freq=1),
-    Chore(name="Trash", freq=1),
-    Chore(name="Bathroom", freq=4),
-    Chore(name="Recycling", freq=1),
-    Chore(name="Stuffffff", freq=1)
+    Chore("Dishes", 1),
+    Chore("Trash", 1),
+    Chore("Bathroom", 4),
+    Chore("Recycling", 1),
+    Chore("Stuffffff", 1)
   ]
 
-  session.add(people[0])
+  db.session.add(people[0])
   #session.add(chores[0])
-  session.commit()
+  db.session.commit()
   #createPairs(session)
-  session.flush()
+  db.session.flush()
