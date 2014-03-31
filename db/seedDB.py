@@ -60,6 +60,6 @@ def seed():
     Chore("Stuffffff", 1)
   ]
 
-  db.session.add(people[0])
-  db.session.add(chores[1])
+  db.session.add_all(people)
+  db.session.add_all(chores)
   db.session.commit()
