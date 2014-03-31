@@ -6,7 +6,7 @@ SHAREDDIR = ./app/
 
 all: launch
 
-launch: $(DBDIRFILES)
+launch: $(DBDIRFILES) $(SHAREDFILES)
 	cp $(DBDIRFILES) ./
 	cp $(SHAREDDIR) ./
 	python launch.py
