@@ -15,9 +15,9 @@ def createPairs():
   chores = Chore.query.order_by(Chore.id)
   for p in pid:
     if(len(cid) != 0 and chores[-1].freq == 1):
-      pairs.append(Pair(person = p, chore = cid.pop()))
+      pairs.append(Pair(p, cid.pop()))
     else:
-      pairs.append(Pair(person = p, chore = -1))
+      pairs.append(Pair(p,-1))
 
   db.session.add_all(pairs)
   pairs = []
@@ -33,7 +33,7 @@ def createPairs():
       for p in people:
         total -= p.tickets
         if(total <= 0):
-          pairs.append(Pair(person = p.id,chore = c.id))
+          pairs.append(Pair(p.id,c.id))
           p.tickets -= c.freq
 
   db.session.add_all(pairs)
@@ -62,6 +62,7 @@ def seed():
   ]
   Person.query.delete()
   Chore.query.delete()
+  Pair.query.delete()
   db.session.add_all(people)
   db.session.add_all(chores)
   db.session.commit()
