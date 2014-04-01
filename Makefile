@@ -22,3 +22,4 @@ clean:
 	rm *.pyc
 	rm db/*.pyc
 	rm app/*.pyc
+	rm /tmp/test.db

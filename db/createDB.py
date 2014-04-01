@@ -18,26 +18,16 @@ class Chore(db.Model):
   name = db.Column(db.String)
   #frequency expressed in weeks
   freq = db.Column(db.Integer)
+  assigned = db.Column(db.String)
   id = db.Column(db.Integer, primary_key=True)
 
   def __init__(self, name, freq):
     self.name = name
     self.freq = freq
+    self.assigned = ""
 
   def __repr__(self):
-    return "<Chore(name='%s', freq='%i')>" % (self.name, self.freq)
+    return "<Chore(name='%s', freq='%i', assigned='%s')>" % (self.name, self.freq, self.assigned)
 
-#represents a person Chore pair
-class Pair(db.Model):
-  person = db.Column(db.Integer)
-  chore = db.Column(db.Integer)
-  id = db.Column(db.Integer, primary_key=True)
-
-  def __init__(self, person, chore):
-    self.person = person
-    self.chore = chore
-
-  def __repr__(self):
-    return "<Pair(chore='%i', person='%i')>" % (self.person, self.chore)
 
 db.create_all()

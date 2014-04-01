@@ -1,4 +1,4 @@
-from createDB import Person, Chore, Pair
+from createDB import Person, Chore
 from app import db
 
 
