@@ -22,7 +22,7 @@ def multiSelect():
 
 
 def getPeople():
-  return Person.session.query.order_by(Person.id)
+  return Person.query.order_by(Person.id)
 
 def getChores():
-  return Chore.session.query.order_by(Chore.id)
+  return Chore.query.order_by(Chore.id)

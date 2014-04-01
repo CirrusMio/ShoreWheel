@@ -12,7 +12,7 @@ class Person(db.Model):
     self.tickets = 1
 
   def __repr__(self):
-    return "<Person(displayName='%s', fullName='%s', tickets='%i')>" % (self.displayName, self.fullName)
+    return "<Person(displayName='%s', fullName='%s', tickets='%i')>" % (self.displayName, self.fullName, self.tickets)
 
 class Chore(db.Model):
   name = db.Column(db.String)

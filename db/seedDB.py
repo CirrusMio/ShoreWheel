@@ -2,7 +2,7 @@ from app import db
 from createDB import Person, Chore, Pair
 from random import randint
 
-def createPairs(session):
+def createPairs():
   #person ids array
   pid = []
   #chore ids array
@@ -59,7 +59,9 @@ def seed():
     Chore("Recycling", 1),
     Chore("Stuffffff", 1)
   ]
-
+  Person.query.delete()
+  Chore.query.delete()
   db.session.add_all(people)
   db.session.add_all(chores)
   db.session.commit()
+  createPairs()
