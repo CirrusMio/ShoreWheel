@@ -30,7 +30,8 @@ class Chore(db.Model):
 #represents a person Chore pair
 class Pair(db.Model):
   person = db.Column(db.Integer)
-  chore = db.Column(db.Integer, primary_key=True)
+  chore = db.Column(db.Integer)
+  id = db.Column(db.Integer, primary_key=True)
 
   def __init__(self, person, chore):
     self.person = person
