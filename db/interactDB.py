@@ -16,7 +16,6 @@ def rotate():
   #TODO func rotates the weekly chores
   chores = Chore.query.filter_by(freq=1)
   people = Person.query.order_by(Person.tickets)
-  people = people[::-1]
   for c in chores:
     c.assigned = people[i].displayName
     people[i].tickets += 1
