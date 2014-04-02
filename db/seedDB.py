@@ -4,13 +4,14 @@ from random import randint
 
 def createPairs():
   i = 0
-  for c in Chore.query.all():
+  chores = Chore.query.all()
+  people = Person.query.all()
+  for c in chores:
     if(c.freq > 1):
-      c.assigned = Person.query.all()[i]
+      c.assigned = people[i].displayName
     else:
-      c.assigned = Person.query.all()[i]
+      c.assigned = people[i].displayName
       i += 1
-  db.session.commit()
 
 def seed():
   #start the seeding
@@ -39,4 +40,4 @@ def seed():
   db.session.add_all(people)
   db.session.add_all(chores)
   db.session.commit()
-  #createPairs()
+  createPairs()
