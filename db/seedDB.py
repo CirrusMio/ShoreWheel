@@ -9,9 +9,12 @@ def createPairs():
   for c in chores:
     if(c.freq > 1):
       c.assigned = people[i].displayName
+      people[i].tickets += 1
     else:
       c.assigned = people[i].displayName
+      people[i].tickets += 1
       i += 1
+
 
 def seed():
   #start the seeding
