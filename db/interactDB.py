@@ -6,7 +6,7 @@ from app import db
 #adds the chore specified by the name, n, and the frequency, f.
 def createChore(n, f):
   db.session.add(Chore(n, f))
-  dbsession.commit()
+  db.session.commit()
 
 def createPerson(name, fullname):
   db.session.add(Person(name, fullname))
