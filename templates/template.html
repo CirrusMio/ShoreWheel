@@ -1,8 +1,26 @@
-<title> Shore Wheel </title>
-{% for chore in chores %}
-  <li>{{chore}}</li>
-{% endfor %}
-<br>
-{% for person in people %}
-  <li>{{person}}</li>
-{% endfor %}
+<title> Chore Wheel </title>
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"></link>
+	  <head>
+    <div class="panel panel-default col-md-8 col-md-offset-2">
+      <div class="panel-heading"><h1>Chore Wheel</h1></div>
+      <div class="panel-body">
+        <title> Chore Wheel </title>
+        <body ng-controller="choreWheelCtrl">
+        	{% for chore in chores %}
+        		<li>{{chore}}</li>
+        	{% endfor %}
+        	<br>
+        	{% for person in people %}
+        		<li>{{person}}</li>
+        	{% endfor %}
+<!--           <table class="table table-bordered table-striped">
+            <tr>
+            </tr>
+            <tr ng-repeat="pair in wheel.pairs">
+            </tr>
+          </table> -->
+        </body>
+      </div>
+    </div>
+  </head>
+</html>
