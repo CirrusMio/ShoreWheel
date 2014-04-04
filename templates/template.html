@@ -5,20 +5,19 @@
       <div class="panel-heading"><h1>Chore Wheel</h1></div>
       <div class="panel-body">
         <title> Chore Wheel </title>
-        <body ng-controller="choreWheelCtrl">
-        	{% for chore in chores %}
-        		<li>{{chore}}</li>
-        	{% endfor %}
-        	<br>
-        	{% for person in people %}
-        		<li>{{person}}</li>
-        	{% endfor %}
-<!--           <table class="table table-bordered table-striped">
-            <tr>
-            </tr>
-            <tr ng-repeat="pair in wheel.pairs">
-            </tr>
-          </table> -->
+        <body>
+        	<table class="table table-bordered table-striped">
+        		<tr>
+        			{% for chore in chores %}
+        				<td>{{chore.name}}</td>
+        			{% endfor %}
+        		</tr>
+        		<tr>
+        			{% for chore in chores %}
+        				<td>{{chore.assigned}}</td>
+        			{% endfor %}
+        		</tr>
+        	</table>
         </body>
       </div>
     </div>
