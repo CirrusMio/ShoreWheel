@@ -7,15 +7,14 @@
         <title> Chore Wheel </title>
         <body>
         	<table class="table table-bordered table-striped">
-        		<tr>
-        			{% for chore in chores %}
-        				<td>{{chore.name}}</td>
-        			{% endfor %}
-        		</tr>
-        		<tr>
-        			{% for chore in chores %}
-        				<td>{{chore.assigned}}</td>
-        			{% endfor %}
+            <tr>
+              <th><h3>Person</h3></th>
+              <th><h3>Chore</h3></th>
+            </tr>
+            <tr {% for chore in chores %}>
+              <td>{{chore.assigned}}</td>
+              <td>{{chore.name}}</td>
+            </tr {% endfor %>
         		</tr>
         	</table>
         </body>
