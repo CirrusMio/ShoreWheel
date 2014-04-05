@@ -1,33 +1,24 @@
 from app import db
 from createDB import Person, Chore
 from random import randint
+from interactDB import rotate, multiSelect
 
 def createPairs():
-  i = 0
-  chores = Chore.query.all()
-  people = Person.query.all()
-  for c in chores:
-    if(c.freq > 1):
-      c.assigned = people[i].displayName
-      people[i].tickets += 1
-    else:
-      c.assigned = people[i].displayName
-      people[i].tickets += 1
-      i += 1
+  rotate()
+  multiSelect()
 
 
 def seed():
   #start the seeding
-
   people = [
-    Person("Mike", "Mike Dillon"),
-    Person("Chase Original", "Original Chase"),
-    Person("Nu Chase", "New Chase"),
-    Person("Tanzi", "Tanzi Merritt"),
-    Person("Sarah", "Sarah Vessels"),
-    Person("Todd", "Todd Willey"),
-    Person("Steev", "Asian Steev"),
-    Person("Will", "Asian Will")
+    Person("Mike Dillon", "Mike"),
+    Person("Original Chase", "Chase Original"),
+    Person("New Chase", "Nu Chase"),
+    Person("Tanzi Merritt", "Tanzi"),
+    Person("Sarah Vessels", "Sarah"),
+    Person("Todd Willey", "Todd"),
+    Person("Asian Steev", "Steev"),
+    Person("Asian Will", "Will")
   ]
 
   chores = [
@@ -38,6 +29,7 @@ def seed():
     Chore("Recycling", 1),
     Chore("Stuffffff", 1)
   ]
+
   Person.query.delete()
   Chore.query.delete()
   db.session.add_all(people)
