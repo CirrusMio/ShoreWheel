@@ -16,15 +16,14 @@ def rotate():
   #TODO func rotates the weekly chores
   i = 0
   chores = Chore.query.filter_by(freq=1)
-  people = Person.query.all()
-  people = shuffle(people)
+  people = Person.query.order_by(Person.tickets).all()
+  people = people[::-1]
   for c in chores:
-    if(c.freq == 1):
-      c.assigned = people[i].displayName
-      people[i].tickets -= 1
-      if(people[i].tickets <= 0):
-        people[i].tickets = 1
-      i += 1
+    c.assigned = people[i].displayName
+    people[i].tickets -= 1
+    if(people[i].tickets <= 0):
+      people[i].tickets = 1
+    i += 1
   for i in xrange(i,len(people)):
     people[i].tickets += 1
   db.session.commit()
