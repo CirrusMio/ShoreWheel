@@ -60,6 +60,7 @@ def multiSelect():
           p.tickets -= c.freq
 
         c.assigned = p.displayName
+        break
   db.session.commit()
   return
 
