@@ -22,6 +22,10 @@ def rotate():
   chores = shuffle(chores.all())
   for c in chores:
     if(c.untilRotate <= 0):
+<<<<<<< HEAD
+=======
+      c.lastRotate = date.today()
+>>>>>>> 462c5fc316eaaebee86c6ccbee15d5c41b7941d5
       c.untilRotate = c.freq
       c.assigned = people[i].displayName
       people[i].tickets -= 1
