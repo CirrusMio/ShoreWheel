@@ -1,14 +1,16 @@
-from app import app
+from app import app, db
 from flask import Flask, render_template, redirect, url_for
 from interactDB import getPeople, getChores, rotate, multiSelect
 from seedDB import seed
 from datetime import timedelta, date
 
 def update():
-  for c in getChores():
-    if(c.lastRotate-date.today() > timedelta(weeks=1)):
-      c.untilRotate -= int((c.lastRotate-date.today()).days/7)
+  chores = getChores()
+  for c in chores:
+    if(date.today()-c.lastRotate > timedelta(weeks=1)):
+      c.untilRotate -= int((date.today()-c.lastRotate).days/7)
       c.lastRotate = date.today()
+  db.session.commit()
 
 @app.route('/')
 def index():

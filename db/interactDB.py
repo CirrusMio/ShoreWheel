@@ -22,7 +22,6 @@ def rotate():
   chores = shuffle(chores.all())
   for c in chores:
     if(c.untilRotate <= 0):
-      c.lastRotate = date.today()
       c.untilRotate = c.freq
       c.assigned = people[i].displayName
       people[i].tickets -= 1
@@ -70,7 +69,6 @@ def multiSelect():
 
         c.assigned = p.displayName
         c.untilRotate = c.freq
-        c.lastRotate = date.today()
         break
   db.session.commit()
   return
