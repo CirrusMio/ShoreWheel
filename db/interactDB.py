@@ -15,9 +15,10 @@ def createPerson(name, fullname):
 def rotate():
   #TODO func rotates the weekly chores
   i = 0
-  chores = Chore.query.filter_by(freq=1)
+  chores = Chore.query.filter_by(freq=1).all()
   people = Person.query.order_by(Person.tickets).all()
   people = people[::-1]
+  shuffle(chores)
   for c in chores:
     c.assigned = people[i].displayName
     people[i].tickets -= 1

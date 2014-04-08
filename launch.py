@@ -1,7 +1,7 @@
 from app import app
 from flask import Flask, render_template, redirect, url_for
 from interactDB import getPeople, getChores, rotate, multiSelect
-from seedDB import seed, createPairs
+from seedDB import seed
 
 @app.route('/')
 def index():
@@ -12,7 +12,11 @@ def index():
 @app.route('/spin')
 def spin():
   rotate()
-  #multiSelect()
+  return redirect(url_for('index'))
+
+@app.route('/multi')
+def multi():
+  multiSelect()
   return redirect(url_for('index'))
 
 if(__name__=="__main__"):
