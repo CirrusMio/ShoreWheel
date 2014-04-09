@@ -2,28 +2,30 @@
 <head>
   <title> Chore Wheel </title>
   <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-</head>
 <body>
-  <div class="container">
-    <div class="page-header">
-      <h1>Chore Wheel</h1>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2"
+    <div class="container">
+      <div class="page-header">
+        <h1>Chore Wheel</h1>
+      </div>
+      <table class="table table-bordered table-striped" style="background-color: #66CCFF">
+        <thead>
+          <tr>
+            <th>Person</th>
+            <th>Chore</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for chore in chores %}
+          <tr>
+            <td>{{chore.assigned}}</td>
+            <td>{{chore.name}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Person</th>
-          <th>Chore</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for chore in chores %}
-        <tr>
-          <td>{{chore.assigned}}</td>
-          <td>{{chore.name}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
   </div>
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </body>
