@@ -2,6 +2,7 @@ from app import db
 from createDB import Person, Chore
 from random import randint
 from interactDB import rotate, multiSelect
+from datetime import date
 
 def createPairs():
   rotate()
@@ -22,12 +23,12 @@ def seed():
   ]
 
   chores = [
-    Chore("Dishes", 1),
-    Chore("Trash", 1),
-    Chore("Bathroom", 4),
-    Chore("Pay Interns", 4),
-    Chore("Recycling", 1),
-    Chore("Stuffffff", 1)
+    Chore("Dishes", 1, date.today()),
+    Chore("Trash", 1, date.today()),
+    Chore("Bathroom", 4, date.today()),
+    Chore("Pay Interns", 4, date.today()),
+    Chore("Recycling", 1, date.today()),
+    Chore("Stuffffff", 1, date.today())
   ]
 
   Person.query.delete()
