@@ -1,8 +1,32 @@
-<title> Shore Wheel </title>
-{% for chore in chores %}
-  <li>{{chore}}</li>
-{% endfor %}
-<br>
-{% for person in people %}
-  <li>{{person}}</li>
-{% endfor %}
+<!DOCTYPE html>
+<head>
+  <title> Chore Wheel </title>
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<body>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2"
+    <div class="container">
+      <div class="page-header">
+        <h1>Chore Wheel</h1>
+      </div>
+      <table class="table table-bordered table-striped" style="background-color: #66CCFF">
+        <thead>
+          <tr>
+            <th>Person</th>
+            <th>Chore</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for chore in chores %}
+          <tr>
+            <td>{{chore.assigned}}</td>
+            <td>{{chore.name}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
