@@ -30,8 +30,3 @@ def spin():
 def multi():
   multiSelect()
   return redirect(url_for('index'))
-
-if(__name__=="__main__"):
-  app.debug = True
-  seed()
-  app.run()
