@@ -1,14 +1,62 @@
-# -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = "2"
+Vagrant.require_plugin 'vagrant-berkshelf'
+Vagrant.require_plugin 'vagrant-cachier'
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.synced_folder "./" , "/src/"
-  config.vm.synced_folder "./app" , "/src/app"
-  config.vm.synced_folder "./db" , "/src/db"
-  config.vm.synced_folder "./templates" , "/src/templates"
-  config.vm.box = 'opscode-ubuntu-12.04'
-  config.vm.box_url = 'https://opscode-vm.s3.amazonaws.com/vagrant/boxes/opscode-ubuntu-12.04.box'
+Vagrant.configure('2') do |config|
+  config.vm.define('shorewheel') do |cm|
+    cm.vm.hostname = 'shorewheel'
+    cm.vm.box = 'saucy-virtualbox-sysruby'
+    cm.vm.box_url = 'http://boxes.cirrusmio.com/ubuntu/' +
+                         'saucy-virtualbox-sysruby.box'
+
+    cm.vm.provider 'virtualbox' do |v|
+      v.customize ['modifyvm', :id, '--memory', 512]
+      v.customize ['modifyvm', :id, '--name', 'shorewheel']
+    end
+
+    cm.vm.network :forwarded_port, guest: 1792, host: 1792
+    cm.vm.synced_folder './', '/home/ubuntu/shorewheel'
+
+    cm.ssh.forward_agent = true
+    cm.ssh.username = 'ubuntu'
+
+    %w{apt chef}.each {|c| cm.cache.enable c.to_sym}
+
+    cm.berkshelf.enbaled = true
+    cm.vm.provision :chef_solo do |chef|
+      chef.log_level = :debug
+      chef.run_list = ['recipe[cirrusmio::postgres]']
+      chef.json = {
+        postgresql: {
+          version: '9.3',
+          password: {postgres: 'password'},
+          pg_hba: [{type: 'host', db: 'all',
+                    user: 'postgres', addr: '127.0.0.1/32',
+                    method: 'trust'},
+                   {type: 'local', db: 'all',
+                    user: 'postgres', addr: nil,
+                    method: 'trust'},
+                   {type: 'host', db: 'all',
+                    user: 'shorewheel', addr: '127.0.0.1/32',
+                    method: 'password'},
+                   {type: 'local', db: 'all',
+                    user: 'shorewheel', addr: nil,
+                    method: 'password'}]
+        },
+        postgresql_databases: {
+          shorewheel_development: {
+            users: {shorewheel: 'shorewheel'},
+            owner: 'shorewheel',
+            postgis: true
+          },
+          shorewheel_test: {
+            users: {shorewheel: 'shorewheel'},
+            owner: 'shorewheel',
+            postgis: true
+          }
+        }
+      }
+    end
+  end
 end
