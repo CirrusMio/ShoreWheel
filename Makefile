@@ -9,7 +9,6 @@ all: launch
 launch: $(DBDIRFILES) $(SHAREDFILES)
 	cp $(DBDIRFILES) ./
 	cp $(SHAREDFILES) ./
-	python launch.py
 
 $(DBDIRFILES): $(SHAREDFILES)
 	cp $(SHAREDFILES) ./
@@ -17,6 +16,11 @@ $(DBDIRFILES): $(SHAREDFILES)
 
 $(SHAREDFILES):
 	python -m compileall $(SHAREDDIR)
+
+seed: $(DBDIRFILES) $(SHAREDFILES)
+	cp $(DBDIRFILES) ./
+	cp $(SHAREDFILES) ./
+	python seed.py
 
 clean:
 	rm *.pyc
