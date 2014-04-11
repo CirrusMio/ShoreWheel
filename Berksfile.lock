@@ -3,6 +3,9 @@
     "cirrusmio": {
       "path": "../cirrusmio-chef/cookbooks/cirrusmio"
     },
+    "shorewheel": {
+      "path": "./cookbook"
+    },
     "apt": {
       "locked_version": "2.3.8"
     },
