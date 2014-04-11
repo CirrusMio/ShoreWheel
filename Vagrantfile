@@ -15,7 +15,7 @@ Vagrant.configure('2') do |config|
       v.customize ['modifyvm', :id, '--name', 'shorewheel']
     end
 
-    cm.vm.network :forwarded_port, guest: 1792, host: 1792
+    cm.vm.network :forwarded_port, guest: 5000, host: 5000
     cm.vm.synced_folder './', '/home/ubuntu/shorewheel'
 
     cm.ssh.forward_agent = true
@@ -26,8 +26,21 @@ Vagrant.configure('2') do |config|
     cm.berkshelf.enbaled = true
     cm.vm.provision :chef_solo do |chef|
       chef.log_level = :debug
-      chef.run_list = ['recipe[cirrusmio::postgres]']
+      chef.run_list = [
+                        'recipe[cirrusmio::postgres]',
+                        'recipe[cirrusmio::sysruby]',
+                        'recipe[shorewheel::default]',
+                        'recipe[shorewheel::development]'
+                      ]
       chef.json = {
+        shorewheel: {
+          database: {
+            name: 'shorewheel_development',
+            host: 'localhost',
+            username: 'shorewheel',
+            password: 'shorewheel'
+          }
+        },
         postgresql: {
           version: '9.3',
           password: {postgres: 'password'},
