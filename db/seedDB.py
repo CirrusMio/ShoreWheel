@@ -23,12 +23,12 @@ def seed():
   ]
 
   chores = [
-    Chore("Dishes", 1, date.today()),
-    Chore("Trash", 1, date.today()),
-    Chore("Bathroom", 4, date.today()),
-    Chore("Pay Interns", 4, date.today()),
-    Chore("Recycling", 1, date.today()),
-    Chore("Stuffffff", 1, date.today())
+    Chore("Load and Unload Dishwasher", 1, date.today()),
+    Chore("Take Out Trash and Recycling", 1, date.today()),
+    Chore("Clean Both Bathrooms", 4, date.today()),
+    Chore("Mop the Floors", 4, date.today()),
+    Chore("Cans to Curb and Back", 1, date.today()),
+    Chore("Clean out Refridgerator", 2, date.today())
   ]
 
   Person.query.delete()
