@@ -1,4 +1,4 @@
-name             'ShoreWheel'
+name             'shorewheel'
 maintainer       'CirrusMio'
 maintainer_email 'todd.willey@cirrusmio.com'
 license          'All rights reserved'
