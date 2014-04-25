@@ -7,12 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
-bash 'start' do
-  cwd '/home/ubuntu/shorewheel'
-  code <<-EOH
-  foreman start
-  EOH
-end
+# bash 'start' do
+#   cwd '/home/ubuntu/shorewheel'
+#   code <<-EOH
+#   foreman start
+#   EOH
+# end
 
 bash 'seed-project' do
   cwd '/home/ubuntu/shorewheel'

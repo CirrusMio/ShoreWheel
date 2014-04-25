@@ -9,13 +9,6 @@
 
 database_attr = node['shorewheel']['database']
 
-bash 'seed-project' do
-  cwd '/home/ubuntu/shorewheel'
-  code <<-EOH
-  make seed
-  EOH
-end
-
 template '/home/ubuntu/shorewheel/app/app.py' do
   source 'app.py.erb'
   mode 0644

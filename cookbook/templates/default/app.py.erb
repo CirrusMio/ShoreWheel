@@ -2,6 +2,6 @@ from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask('ShoreWheel')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgesql://<%= @username %>:<%= @password %>@<%= @host %>/<%= @name %>'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://<%= @username %>:<%= @password %>@<%= @host %>/<%= @name %>'
 
 db = SQLAlchemy(app)

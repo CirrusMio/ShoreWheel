@@ -11,7 +11,11 @@ package 'python-setuptools' do
   action :install
 end
 
-%w{flask flask-sqlalchemy gunicorn}.each do |p|
+package 'python-dev' do
+  action :install
+end
+
+%w{flask flask-sqlalchemy gunicorn psycopg2}.each do |p|
   easy_install_package p do
     action :install
   end
