@@ -16,3 +16,14 @@ end
     action :install
   end
 end
+
+gem_package "foreman" do
+  action :install
+end
+
+bash 'make-project' do
+  cwd '/home/ubuntu/shorewheel'
+  code <<-EOH
+  make
+  EOH
+end
