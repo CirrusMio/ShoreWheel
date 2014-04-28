@@ -18,8 +18,6 @@ Vagrant.configure('2') do |config|
     cm.ssh.forward_agent = true
     cm.ssh.username = 'ubuntu'
 
-    #%w{apt chef}.each {|c| cm.cache.enable c.to_sym}
-
     cm.berkshelf.enbaled = true
     cm.vm.provision :chef_solo do |chef|
       chef.log_level = :debug
