@@ -9,8 +9,8 @@ DEPLOY_PATH="<%= @deploy_path %>"
 PID="$DEPLOY_PATH/shared/tmp/pids/gunicorn.pid"
 ENV="<%= @environment %>"
 
-UNICORN_PATH="$DEPLOY_PATH/shared/bin/gunicorn_rails"
-UNICORN_OPTS="-D -E $ENV -c $DEPLOY_PATH/shared/config/gunicorn.rb"
+GUNICORN_PATH="$DEPLOY_PATH/shared/bin/gunicorn-init"
+GUNICORN_OPTS="-D -E $ENV -c $DEPLOY_PATH/shared/config/gunicorn.rb"
 
 CMD="$GUNICORN_PATH $GUNICORN_OPTS"
 
