@@ -1,0 +1,70 @@
+#!/bin/sh
+set -u
+set -e
+# Example init script, this can be used with nginx, too,
+# since nginx and gunicorn accept the same signals
+
+# Feel free to change any of the following variables for your app:
+DEPLOY_PATH="<%= @deploy_path %>"
+PID="$DEPLOY_PATH/shared/tmp/pids/gunicorn.pid"
+ENV="<%= @environment %>"
+
+UNICORN_PATH="$DEPLOY_PATH/shared/bin/gunicorn_rails"
+UNICORN_OPTS="-D -E $ENV -c $DEPLOY_PATH/shared/config/gunicorn.rb"
+
+CMD="$GUNICORN_PATH $GUNICORN_OPTS"
+
+OLD_PID="$PID.oldbin"
+
+cd $DEPLOY_PATH || exit 1
+
+sig () {
+	test -s "$PID" && kill -$1 `cat $PID`
+}
+
+oldsig () {
+	test -s $OLD_PID && kill -$1 `cat $OLD_PID`
+}
+
+workersig () {
+  WORKER_PID="$DEPLOY_PATH/shared/tmp/pids/gunicorn.$2.pid"
+
+  test -s "$WORKER_PID" && kill -$1 `cat $WORKER_PID`
+}
+
+case $1 in
+start)
+	sig 0 && echo >&2 "Already running" && exit 0
+	$CMD
+	;;
+stop)
+	sig QUIT && exit 0
+	echo >&2 "Not running"
+	;;
+force-stop)
+	sig TERM && exit 0
+	echo >&2 "Not running"
+	;;
+restart|reload)
+	sig HUP && echo reloaded OK && exit 0
+	echo >&2 "Couldn't reload, starting '$CMD' instead"
+	$CMD
+	;;
+upgrade)
+	sig USR2 && exit 0
+	echo >&2 "Couldn't upgrade, starting '$CMD' instead"
+	$CMD
+	;;
+kill_worker)
+	workersig QUIT $2 && exit 0
+	echo >&2 "Worker not running"
+	;;
+rotate)
+        sig USR1 && echo rotated logs OK && exit 0
+        echo >&2 "Couldn't rotate logs" && exit 1
+        ;;
+*)
+	echo >&2 "Usage: $0 <start|stop|restart|upgrade|rotate|force-stop>"
+	exit 1
+	;;
+esac
