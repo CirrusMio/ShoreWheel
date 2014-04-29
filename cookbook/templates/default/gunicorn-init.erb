@@ -6,17 +6,17 @@ set -e
 
 # Feel free to change any of the following variables for your app:
 DEPLOY_PATH="<%= @deploy_path %>"
-PID="$DEPLOY_PATH/shared/tmp/pids/gunicorn.pid"
+PID="/tmp/pids/gunicorn.pid"
 ENV="<%= @environment %>"
 
-GUNICORN_PATH="$DEPLOY_PATH/shared/bin/gunicorn-init"
-GUNICORN_OPTS="-D -E $ENV -c $DEPLOY_PATH/shared/config/gunicorn.rb"
+GUNICORN_PATH="/usr/local/bin/gunicorn"
+GUNICORN_OPTS="-D -E $ENV -c /home/ubuntu/shorewheel/cookbook/gunicorn.rb"
 
 CMD="$GUNICORN_PATH $GUNICORN_OPTS"
 
 OLD_PID="$PID.oldbin"
 
-cd $DEPLOY_PATH || exit 1
+cd /etc/init.d/ || exit 1
 
 sig () {
 	test -s "$PID" && kill -$1 `cat $PID`
@@ -27,7 +27,7 @@ oldsig () {
 }
 
 workersig () {
-  WORKER_PID="$DEPLOY_PATH/shared/tmp/pids/gunicorn.$2.pid"
+  WORKER_PID="/tmp/pids/gunicorn.$2.pid"
 
   test -s "$WORKER_PID" && kill -$1 `cat $WORKER_PID`
 }
