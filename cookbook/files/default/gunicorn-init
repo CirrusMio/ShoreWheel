@@ -5,12 +5,12 @@ set -e
 # since nginx and gunicorn accept the same signals
 
 # Feel free to change any of the following variables for your app:
-DEPLOY_PATH="<%= @deploy_path %>"
-PID="/tmp/pids/gunicorn.pid"
-ENV="<%= @environment %>"
+CONFIG="/home/ubuntu/shorewheel/cookbook/files/default/gunicorn-config"
+PID="/var/run/shorewheel-gunicorn.pid"
+DEPLOY_PATH="/home/ubuntu/shorewheel"
 
 GUNICORN_PATH="/usr/local/bin/gunicorn"
-GUNICORN_OPTS="-D -E $ENV -c /home/ubuntu/shorewheel/cookbook/gunicorn.rb"
+GUNICORN_OPTS="launch:app -n shorewheel --log-level debug --access-logfile /home/log.txt -c $CONFIG --pid $PID --chdir $DEPLOY_PATH --daemon"
 
 CMD="$GUNICORN_PATH $GUNICORN_OPTS"
 

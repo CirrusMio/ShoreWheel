@@ -7,13 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-# bash 'start' do
-#   cwd '/home/ubuntu/shorewheel'
-#   code <<-EOH
-#   foreman start
-#   EOH
-# end
-
 bash 'seed-project' do
   cwd '/home/ubuntu/shorewheel'
   code <<-EOH
@@ -21,24 +14,33 @@ bash 'seed-project' do
   EOH
 end
 
-define :run do
-  app_name = params[:name]
+app_name = params[:name]
 
-  template ::File.join('/etc/init.d/', "#{app_name}-gunicorn") do
-    source 'gunicorn-init.erb'
-    owner 'root'
-    group 'root'
-    mode 0755
-    variables({
-      deploy_path: params[:deploy_path],
-      environment: params[:environment]
-    })
-    action :create
-  end
+cookbook_file 'gunicorn config' do
+  source 'gunicorn-config'
+  path '/home/ubuntu/shorewheel/gunicorn.config'
+  owner 'root'
+  group 'root'
+  mode 0755
+  action :create
+end
 
-  service "#{app_name}-gunicorn" do
-    init_command "/etc/init.d/#{app_name}-gunicorn"
-    supports restart: true, reload: true
-    action :enable
-  end
+cookbook_file 'gunicorn init' do
+  source 'gunicorn-init'
+  path '/etc/init.d/shorewheel-gunicorn'
+  owner 'root'
+  group 'root'
+  mode 0755
+  action :create
+end
+
+service "shorewheel-gunicorn" do
+  init_command "/etc/init.d/shorewheel-gunicorn"
+  supports restart: true, reload: true
+  action :enable
+end
+
+service "shorewheel-gunicorn" do
+  supports restart: true, reload: true
+  action :start
 end

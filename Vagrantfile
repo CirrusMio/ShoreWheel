@@ -21,6 +21,15 @@ Vagrant.configure('2') do |config|
     cm.berkshelf.enbaled = true
     cm.vm.provision :chef_solo do |chef|
       chef.log_level = :debug
+      chef.roles_path = '../cirrusmio-chef/roles'
+      chef.run_list = [
+                        'role[base]',
+                        'recipe[cirrusmio::postgres]',
+                        'recipe[cirrusmio::sysruby]',
+                        'recipe[shorewheel::default]',
+                        'recipe[shorewheel::development]',
+                        'recipe[shorewheel::run]'
+                      ]
       chef.json = {
         shorewheel: {
           database: {
@@ -59,13 +68,6 @@ Vagrant.configure('2') do |config|
           }
         }
       }
-      chef.run_list = [
-                        'recipe[cirrusmio::postgres]',
-                        'recipe[cirrusmio::sysruby]',
-                        'recipe[shorewheel::default]',
-                        'recipe[shorewheel::development]',
-                        'recipe[shorewheel::run]'
-                      ]
     end
   end
 end
