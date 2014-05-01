@@ -12,7 +12,7 @@ Vagrant.configure('2') do |config|
       v.customize ['modifyvm', :id, '--name', 'shorewheel']
     end
 
-    cm.vm.network :forwarded_port, guest: 5000, host: 5000
+    cm.vm.network :forwarded_port, guest: 80, host: 8080
     cm.vm.synced_folder './', '/home/ubuntu/shorewheel'
 
     cm.ssh.forward_agent = true
@@ -28,7 +28,8 @@ Vagrant.configure('2') do |config|
                         'recipe[cirrusmio::sysruby]',
                         'recipe[shorewheel::default]',
                         'recipe[shorewheel::development]',
-                        'recipe[shorewheel::run]'
+                        'recipe[shorewheel::run]',
+                        'recipe[shorewheel::nginx]'
                       ]
       chef.json = {
         shorewheel: {

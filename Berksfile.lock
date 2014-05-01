@@ -61,6 +61,7 @@ GRAPH
     yum-epel (>= 0.0.0)
   shorewheel (0.0.1)
     cirrusmio (>= 0.0.0)
+    nginx (>= 0.0.0)
   ssh_known_hosts (1.3.0)
     partial_search (>= 0.0.0)
   sudo (2.5.2)
