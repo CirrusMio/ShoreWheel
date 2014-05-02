@@ -10,6 +10,8 @@ def createPairs():
 
 
 def seed():
+  if(len(Person.query.all())!=0):
+    return
   #start the seeding
   people = [
     Person("Mike Dillon", "Mike"),
@@ -17,7 +19,7 @@ def seed():
     Person("New Chase", "Nu Chase"),
     Person("Tanzi Merritt", "Tanzi"),
     Person("Sarah Vessels", "Sarah"),
-    Person("Todd Willey", "Todd"),
+    Person("Todd Willey", "Tadd"),
     Person("Asian Steev", "Steev"),
     Person("Asian Will", "Will")
   ]

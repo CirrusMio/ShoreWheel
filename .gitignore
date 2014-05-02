@@ -3,5 +3,6 @@ _site/
 *.pyc
 
 /.vagrant
+*.log
 
 *.swp
