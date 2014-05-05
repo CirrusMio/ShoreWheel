@@ -51,8 +51,8 @@ monitrc "shorewheel-monit" do
   template_cookbook 'shorewheel'
   template_source 'gunicorn-monit.erb'
   variables({
-    app_name: shorewheel,
-    deploy_path: '/home/ubuntu/shorewheel/',
+    app_name: node['shorewheel']['app_name'],
+    deploy_path: node['shorewheel']['deploy_path'],
     user: 'root',
     group: 'root'
   })

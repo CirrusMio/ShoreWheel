@@ -7,3 +7,4 @@
 10.0.2.2 - - [02/May/2014:19:37:28 +0000] "GET / HTTP/1.1" 200 1592 "-" "curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8y zlib/1.2.5"
 10.0.2.2 - - [02/May/2014:19:37:52 +0000] "GET / HTTP/1.1" 200 575 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.131 Safari/537.36"
 10.0.2.2 - - [05/May/2014:19:39:21 +0000] "GET / HTTP/1.1" 200 1582 "-" "curl/7.21.4 (universal-apple-darwin11.0) libcurl/7.21.4 OpenSSL/0.9.8y zlib/1.2.5"
+10.0.2.2 - - [05/May/2014:20:27:43 +0000] "GET / HTTP/1.1" 200 1498 "-" "curl/7.24.0 (x86_64-apple-darwin12.0) libcurl/7.24.0 OpenSSL/0.9.8y zlib/1.2.5"
