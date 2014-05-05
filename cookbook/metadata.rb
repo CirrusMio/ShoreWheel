@@ -10,3 +10,4 @@ supports 'ubuntu'
 
 depends 'cirrusmio'
 depends 'nginx'
+depends 'monit'

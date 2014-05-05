@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe 'monit'
+
 bash 'seed-project' do
   cwd '/home/ubuntu/shorewheel'
   code <<-EOH
@@ -43,4 +45,15 @@ end
 service "shorewheel-gunicorn" do
   supports restart: true, reload: true
   action :start
+end
+
+monitrc "shorewheel-monit" do
+  template_cookbook 'shorewheel'
+  template_source 'gunicorn-monit.erb'
+  variables({
+    app_name: shorewheel,
+    deploy_path: '/home/ubuntu/shorewheel/',
+    user: 'root',
+    group: 'root'
+  })
 end
