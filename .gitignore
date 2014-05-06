@@ -2,7 +2,7 @@ _site/
 .DS_Store
 *.pyc
 
-/.vagrant
+.vagrant/
 *.log
 
 *.swp
