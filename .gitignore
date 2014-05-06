@@ -4,5 +4,6 @@ _site/
 
 .vagrant/
 *.log
+log.txt
 
 *.swp

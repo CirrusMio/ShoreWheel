@@ -10,7 +10,7 @@ PID="/var/run/shorewheel-gunicorn.pid"
 DEPLOY_PATH="/home/ubuntu/shorewheel"
 
 GUNICORN_PATH="/usr/local/bin/gunicorn"
-GUNICORN_OPTS="launch:app -n shorewheel --log-level debug --access-logfile /home/log.txt -c $CONFIG --pid $PID --chdir $DEPLOY_PATH --daemon"
+GUNICORN_OPTS="launch:app -n shorewheel --log-level info -c $CONFIG --pid $PID --chdir $DEPLOY_PATH --daemon"
 
 CMD="$GUNICORN_PATH $GUNICORN_OPTS"
 

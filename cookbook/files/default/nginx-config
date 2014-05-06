@@ -2,8 +2,8 @@ server {
   listen 80;
   server_name localhost;
 
-  access_log /home/ubuntu/shorewheel/log/nginx_access.log;
-  error_log /home/ubuntu/shorewheel/log/nginx_error.log;
+  access_log /home/ubuntu/shorewheel/nginx_access.log;
+  error_log /home/ubuntu/shorewheel/nginx_error.log;
 
   keepalive_timeout 10;
   root /home/ubuntu/shorewheel/public;
