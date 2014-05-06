@@ -26,7 +26,7 @@ gem_package "foreman" do
 end
 
 bash 'make-project' do
-  cwd '/home/ubuntu/shorewheel'
+  cwd node['shorewheel']['deploy_path']
   code <<-EOH
   make
   EOH

@@ -10,7 +10,7 @@
 include_recipe 'monit'
 
 bash 'seed-project' do
-  cwd '/home/ubuntu/shorewheel'
+  cwd node['shorewheel']['deploy_path']
   code <<-EOH
   make seed
   EOH
@@ -20,7 +20,7 @@ app_name = params[:name]
 
 cookbook_file 'gunicorn config' do
   source 'gunicorn-config'
-  path '/home/ubuntu/shorewheel/gunicorn.config'
+  path node['shorewheel']['deploy_path']+'gunicorn.config'
   owner 'root'
   group 'root'
   mode 0755

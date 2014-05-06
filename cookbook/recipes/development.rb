@@ -9,7 +9,7 @@
 
 database_attr = node['shorewheel']['database']
 
-template '/home/ubuntu/shorewheel/app/app.py' do
+template node['shorewheel']['deploy_path']+'app/app.py' do
   source 'app.py.erb'
   mode 0644
   variables({
