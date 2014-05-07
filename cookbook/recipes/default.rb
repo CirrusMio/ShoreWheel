@@ -28,6 +28,7 @@ end
 bash 'make-project' do
   cwd node['shorewheel']['deploy_path']
   code <<-EOH
+  make clean
   make
   EOH
 end

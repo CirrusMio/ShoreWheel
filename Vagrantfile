@@ -26,8 +26,8 @@ Vagrant.configure('2') do |config|
                         'role[base]',
                         'recipe[cirrusmio::postgres]',
                         'recipe[cirrusmio::sysruby]',
-                        'recipe[shorewheel::default]',
                         'recipe[shorewheel::development]',
+                        'recipe[shorewheel::default]',
                         'recipe[shorewheel::run]',
                         'recipe[shorewheel::nginx]'
                       ]
