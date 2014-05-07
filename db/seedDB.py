@@ -10,16 +10,20 @@ def createPairs():
 
 
 def seed():
+  if(len(Person.query.all())!=0):
+    return
   #start the seeding
   people = [
-    Person("Mike Dillon", "Mike"),
-    Person("Original Chase", "Chase Original"),
-    Person("New Chase", "Nu Chase"),
+    Person("Mike Dillon", "Mike: Original Flavor"),
+    Person("Chase Southard", "Chase Original"),
+    Person("Chase James", "Nu Chase"),
     Person("Tanzi Merritt", "Tanzi"),
     Person("Sarah Vessels", "Sarah"),
     Person("Todd Willey", "Todd"),
     Person("Asian Steev", "Steev"),
-    Person("Asian Will", "Will")
+    Person("Will Anderson", "Will"),
+    Person("Nikolai Warner", "Nick"),
+    Person("Michael New-Guy", "Michael III")
   ]
 
   chores = [

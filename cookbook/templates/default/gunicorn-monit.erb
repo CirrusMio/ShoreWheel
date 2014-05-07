@@ -1,0 +1,8 @@
+check process <%= @app_name %>-gunicorn
+  with pidfile <%= @deploy_path %>/shared/tmp/pids/gunicorn.pid
+  start program = "/etc/init.d/<%= @app_name %>-gunicorn start" as uid <%= @user %> and gid <%= @group %>
+  stop program = "/etc/init.d/<%= @app_name %>-gunicorn stop"
+  if mem is greater than 400.0 MB for 1 cycles then restart
+  if cpu is greater than 50% for 2 cycles then alert
+  if cpu is greater than 80% for 3 cycles then restart
+  group <%= @app_name %>-gunicorn

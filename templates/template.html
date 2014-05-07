@@ -14,6 +14,7 @@
           <tr>
             <th>Person</th>
             <th>Chore</th>
+            <th>Weeks to Complete</th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +22,7 @@
           <tr>
             <td>{{chore.assigned}}</td>
             <td>{{chore.name}}</td>
+            <td>{{chore.untilRotate}}</td>
           </tr>
           {% endfor %}
         </tbody>

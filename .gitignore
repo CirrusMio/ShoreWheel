@@ -1,3 +1,9 @@
 _site/
 .DS_Store
 *.pyc
+
+.vagrant/
+*.log
+log.txt
+
+*.swp
